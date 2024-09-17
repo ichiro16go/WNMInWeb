@@ -11,14 +11,13 @@ export default async function getRegion(setRegion, setPlaces) {
   navigator.geolocation.getCurrentPosition(
     (position) => {
       const { latitude, longitude } = position.coords;
-      console.log(latitude,longitude)
 
       // 地図の領域を設定
       setRegion({
-        latitude: latitude,
-        longitude: longitude,
-        latitudeDelta: 0.02305,
-        longitudeDelta: 0.0105,
+        lat: latitude,
+        lng: longitude,
+        latDelta: 0.02305,
+        lngDelta: 0.0105,
       });
 
       // 周辺スポットを取得する関数を呼び出し
