@@ -6,9 +6,9 @@ export default function BookMarkPage() {
 
   return (
     <div style={styles.container}>
-      <div style={styles.bookmark}>
+      {/* <div style={styles.bookmark}>
         <p>bookmark</p>
-      </div>
+      </div> */}
       <div style={styles.scrollContainer}>
         {Array.from({ length: 5 }).map((_, index) => (
           <div key={index} style={styles.item}>
