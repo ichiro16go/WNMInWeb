@@ -21,13 +21,16 @@ function Header() {
     default:
       pageTitle = 'Home';
   }
-
   return (
-    <header className="header">
-      <h1>{pageTitle}</h1>
-      <button className="menuButton">
-        <MdMenu size={30} color="black" />
-      </button>
+    <header div className='Head'>
+        <h1>{pageTitle}</h1>
+        <div className="nikukyu">
+          <div className='circle'>
+          <div className='circle1'></div>
+          <div className='circle2'></div>
+          <div className='circle3'></div>
+          </div>
+        </div>
     </header>
   );
 }

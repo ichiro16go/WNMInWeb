@@ -53,3 +53,15 @@
   font-size: 24px;
   margin-bottom: 5px;
 }
+.square{
+  display: flex;
+  color:white;
+  width: 50%;
+  height:7%;
+  font-size: 12px;
+  padding: 0%;
+}
+.header h1{
+  padding-left: 21%;
+  background-color:#A484A4 ;
+}
