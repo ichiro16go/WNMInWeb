@@ -49,16 +49,16 @@ export default function MapPage() {
                         className="input"
                         placeholder="Googleで検索またはURLを入力"
                     />
-                    <button>
+                    <a>
                         <MdSearch size={24} color="black" />
-                    </button>
+                    </a>
                     <MdMic size={24} color="gray" />
                     <MdCameraAlt size={24} color="gray" />
                 </div>
                 {/*ハンバーガーメニュー（後程肉球に） */}
-                <button className="menuButton">
+                <a className="menuButton">
                     <MdMenu size={30} color="black" />
-                </button>
+                </a>
             </div>
             <GoogleMap
                 mapContainerClassName="map"
@@ -80,10 +80,10 @@ export default function MapPage() {
                     />
                 )}
             </GoogleMap>
-            <div className="buttonContainer">
-                <button >
+            <div className="aContainer">
+                <a >
                     <IoReloadCircle className='reloadButton'/>
-                </button>
+                </a>
                 {/* <RegionReloadButton setRegion={setRegion} setPlaces={setPlaces} /> */}
             </div>
         </div>
