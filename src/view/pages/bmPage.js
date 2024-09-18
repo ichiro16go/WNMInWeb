@@ -28,12 +28,12 @@ export default function BookMarkPage() {
 
 const styles = {
   container: {
+    backgroundColor:'#D9D9D9',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
     backgroundColor: '#fff',
-    height: '100vh', // Viewport高さを100%に
   },
   scrollContainer: {
     width: '100%',

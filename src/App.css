@@ -3,17 +3,25 @@
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
+  background-color:#D9D9D9;
 }
-
 .header{
   display: flex;
-  width: 100%;
-  height: 6%;
+}
+.title{
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: 30%;
+  height: 45%;
   display: inline-block;
   color:white;
-  padding: 10px 20px;
+  font-size: 10px;
+  padding: 3px 19px;
   background-color: #a484a4;
 }
+/* .nikukyu{
+  background-image: url(WNMInWeb/src/assets/Group14.png);
+} */
 
 .headerContainer{
   display: flex;
@@ -52,16 +60,4 @@
 .navbar svg {
   font-size: 24px;
   margin-bottom: 5px;
-}
-.square{
-  display: flex;
-  color:white;
-  width: 50%;
-  height:7%;
-  font-size: 12px;
-  padding: 0%;
-}
-.header h1{
-  padding-left: 21%;
-  background-color:#A484A4 ;
 }
