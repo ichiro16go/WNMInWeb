@@ -31,7 +31,8 @@ export default async function getRegion(setRegion, setPlaces) {
 
 // 周辺スポットを取得する関数（スポットコントローラー）
 async function getNearSpot(latitude, longitude, setPlaces) {
-  const apiKey = "AIzaSyDGwpHlnLrF3qeaH-6Kcvhhuce11jMwsxY"; // .envファイルにAPIキーを保存
+  const apiKey =process.env.REACT_APP_PLACE_API_KEY; // .envファイルにAPIキーを保存
+  console.log(`APIKEY${apiKey}`)
   const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&key=${apiKey}`;
 
   try {

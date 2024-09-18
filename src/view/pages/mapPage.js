@@ -1,51 +1,33 @@
 import React from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-import SearchBar from '../components/searchBar.js';
-import { useState } from 'react';
+import { useState, useEffect,useCallback,useRef } from 'react';
 import getRegion from '../../utils/getRegion.js';
 import RegionReloadButton from '../components/regionReloadButton.js';
-
-
+import './mapPage.css'
+import { MdSearch, MdMic, MdCameraAlt, MdMenu, } from 'react-icons/md';
+import { IoReloadCircle } from "react-icons/io5";
+import Direction from '../components/directionExample.js';
 
 export default function MapPage() {
-    //css
-    const styles = {
-        container: {
-            flex: 1,
-            backgroundColor: '#fff',
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        map: {
-            width: '100vw',
-            height: '100vh',
-        },
-        searchBarContainer: {
-            position: 'absolute',
-            top: 80,
-            left: 0,
-            right: 0,
-            zIndex: 1,
-        },
-        buttonContainer: {
-            position: 'absolute',
-            bottom: 90,
-            right: 20,
-            zIndex: 1,
-        }
-    };
-    //css
+    
     const options = {
         disableDefaultUI: true,
         zoomControl: true,
     };
-    const center = {
+    const [region, setRegion] = useState({
         lat: 35.6895, // 東京の緯度
         lng: 139.6917, // 東京の経度
-    };
-    const [region, setRegion] = useState(center);
+    });
+    const mapRef = useRef();
+    const onMapLoad = useCallback((map) => {
+        mapRef.current = map;
+      }, []);
     const [places, setPlaces] = useState([region,]);
     const [searchResult, setSearchResult] = useState(null);
+    //現在地取得
+    useEffect(() => {
+        getRegion(setRegion, setPlaces);
+    }, []); // 空の依存配列を渡す
     // Google Maps APIをロードする
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_PLACE_API_KEY, // 環境変数からAPIキーを取得
@@ -53,25 +35,42 @@ export default function MapPage() {
     if (!isLoaded) {
         return <div>Loading...</div>;
     }
-    //現在地取得
-    getRegion(setRegion, setPlaces);
+
     //検索機能
-    console.log(places)
+    console.log('周辺情報', places)
 
     return (
-        <div>
-            <div>
-                <SearchBar/>
+        <div className="hollContainer">
+            <div className="headerContainer">
+                {/*検索バー */}
+                <div className="searchContainer">
+                    <input
+                        type="text"
+                        className="input"
+                        placeholder="Googleで検索またはURLを入力"
+                    />
+                    <button>
+                        <MdSearch size={24} color="black" />
+                    </button>
+                    <MdMic size={24} color="gray" />
+                    <MdCameraAlt size={24} color="gray" />
+                </div>
+                {/*ハンバーガーメニュー（後程肉球に） */}
+                <button className="menuButton">
+                    <MdMenu size={30} color="black" />
+                </button>
             </div>
             <GoogleMap
-                mapContainerStyle={styles.map}
+                mapContainerClassName="map"
                 center={region}
                 zoom={17}
                 options={options}
+                onLoad={onMapLoad}
             >
+                <Direction/>
                 <Marker
                     title='現在地'
-                    // icon={customIconForRegion}
+                    className="marker"
                     position={{ lat: region.lat, lng: region.lng }}
                 />
                 {searchResult && (
@@ -81,8 +80,11 @@ export default function MapPage() {
                     />
                 )}
             </GoogleMap>
-            <div style={styles.buttonContainer}>
-                <RegionReloadButton setRegion={setRegion} setPlaces={setPlaces} />
+            <div className="buttonContainer">
+                <button >
+                    <IoReloadCircle className='reloadButton'/>
+                </button>
+                {/* <RegionReloadButton setRegion={setRegion} setPlaces={setPlaces} /> */}
             </div>
         </div>
     );
