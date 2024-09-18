@@ -2,6 +2,7 @@ import React from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useState, useEffect,useCallback,useRef } from 'react';
 import getRegion from '../../utils/getRegion.js';
+import { getNearSpot } from '../../utils/getNearSpot.js';
 import RegionReloadButton from '../components/regionReloadButton.js';
 import './mapPage.css'
 import { MdSearch, MdMic, MdCameraAlt, MdMenu, } from 'react-icons/md';
@@ -26,7 +27,8 @@ export default function MapPage() {
     const [searchResult, setSearchResult] = useState(null);
     //現在地取得
     useEffect(() => {
-        getRegion(setRegion, setPlaces);
+        getRegion(setRegion);
+        getNearSpot(region.lat,region.lng,setPlaces)
     }, []); // 空の依存配列を渡す
     // Google Maps APIをロードする
     const { isLoaded } = useLoadScript({
@@ -67,7 +69,7 @@ export default function MapPage() {
                 options={options}
                 onLoad={onMapLoad}
             >
-                <Direction/>
+                {/* <Direction/> */}
                 <Marker
                     title='現在地'
                     className="marker"
@@ -79,6 +81,7 @@ export default function MapPage() {
                         title="検索結果"
                     />
                 )}
+                
             </GoogleMap>
             <div className="aContainer">
                 <a >
