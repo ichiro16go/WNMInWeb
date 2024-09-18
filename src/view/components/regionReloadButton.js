@@ -1,9 +1,9 @@
 import React from 'react';
 import getRegion from "../../utils/getRegion.js";
 
-export default function RegionReloadButton({ region, setRegion }) {
+export default function RegionReloadButton({ setRegion,setPlaces }) {
     const handlePress = () => {
-        getRegion(region, setRegion);
+        getRegion(setRegion,setPlaces);
     };
 
     return (
